@@ -4,7 +4,6 @@
 #include <unordered_set>
 #include "hash.hpp"
 
-// Level 1 Tests
 TEST(Level1Test, insertOne) {
   HashSet h;
   ASSERT_TRUE(h.empty());
@@ -757,7 +756,6 @@ TEST(Level2Test, iteratorsValidAfterRehash) {
   }
   ASSERT_EQ(*it, 26);
 }
-
 
 TEST(Level2Test, eraseAndInsert) {
   std::mt19937 mt {8'329'822};
