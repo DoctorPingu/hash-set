@@ -2,13 +2,13 @@
 
 This project is a custom, from-scratch implementation of a Hash Set data structure in C++. It is designed to store unique integer keys with efficient average-case time complexity for insertions, deletions, and lookups, mimicking the functionality of `std::unordered_set`.
 
-The implementation uses the **separate chaining** method to handle hash collisions. The hash table automatically resizes and rehashes its elements when the load factor exceeds a specified threshold, ensuring that performance remains optimal as the number of elements grows.
+The implementation uses the separate chaining method to handle hash collisions. The hash table automatically resizes and rehashes its elements when the load factor exceeds a specified threshold, ensuring that performance remains optimal as the number of elements grows.
 
 ## Core Features
 
 -   **O(1) Average Time Complexity**: Achieves constant time performance on average for `insert`, `erase`, and `contains` operations.
 -   **Dynamic Rehashing**: The underlying table automatically grows and rehashes elements to maintain a low load factor, preventing performance degradation.
--   **Customizable Load Factor**: The maximum load factor that triggers a rehash can be inspected and modified at runtime.
+-   **Customisable Load Factor**: The maximum load factor that triggers a rehash can be inspected and modified at runtime.
 -   **Full Iterator Support**: Implements C++ iterators, allowing for standard operations like range-based `for` loops (`for (int val : mySet)`).
 -   **Standard Library Compliance**: Provides an interface similar to the C++ standard library containers, including `size()`, `empty()`, `begin()`, `end()`, `find()`, and a copy-and-swap implementation for safe assignment.
 
@@ -20,11 +20,11 @@ The implementation uses the **separate chaining** method to handle hash collisio
 
 ## How to Build and Run Tests
 
-The project includes a comprehensive test suite using the **Google Test** framework to verify correctness and performance.
+The project includes a comprehensive test suite using the Google Test framework to verify correctness and performance.
 
 ### Prerequisites
 
--   A C++ compiler that supports the **C++20 standard** (e.g., GCC 10+, Clang 12+).
+-   A C++ compiler that supports the C++20 standard (e.g., GCC 10+, Clang 12+).
 -   [Google Test](https://github.com/google/googletest) (gtest) installed and accessible by the compiler.
 
 ### Compiling and Running
