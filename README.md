@@ -1,81 +1,71 @@
 # C++ Hash Set Implementation
 
-This project is a custom, from-scratch implementation of a Hash Set data structure in C++. It is designed to store unique integer keys with efficient average-case time complexity for insertions, deletions, and lookups, mimicking the functionality of `std::unordered_set`.
-
-The implementation uses the separate chaining method to handle hash collisions. The hash table automatically resizes and rehashes its elements when the load factor exceeds a specified threshold, ensuring that performance remains optimal as the number of elements grows.
+This repository provides a concise, academic-style implementation of a custom hash set data structure in C++, supporting efficient insertions, deletions, and lookups. The set uses separate chaining with dynamic resizing (rehashing) to ensure consistent average-case performance.
 
 ## Core Features
 
--   **O(1) Average Time Complexity**: Achieves constant time performance on average for `insert`, `erase`, and `contains` operations.
--   **Dynamic Rehashing**: The underlying table automatically grows and rehashes elements to maintain a low load factor, preventing performance degradation.
--   **Customisable Load Factor**: The maximum load factor that triggers a rehash can be inspected and modified at runtime.
--   **Full Iterator Support**: Implements C++ iterators, allowing for standard operations like range-based `for` loops (`for (int val : mySet)`).
--   **Standard Library Compliance**: Provides an interface similar to the C++ standard library containers, including `size()`, `empty()`, `begin()`, `end()`, `find()`, and a copy-and-swap implementation for safe assignment.
+- **Efficient Operations**: O(1) average time complexity for `insert`, `erase`, and `contains`.
+- **Automatic Rehashing**: Dynamically resizes when exceeding a specified load factor to maintain performance.
+- **Iterator Support**: Fully supports C++ standard iterators for convenient traversal.
+- **Standard-Library Compliance**: Familiar interface including methods like `size()`, `empty()`, `begin()`, and `end()`.
 
-## Implementation Details
+## Implementation Details/Technology Used
 
--   **Buckets**: The hash table is implemented as a `std::vector` of iterators (`std::vector<std::list<int>::iterator>`). Each index in the vector acts as a bucket, pointing to the head of a chain in the shared linked list.
--   **Separate Chaining with a Single List**: All elements are stored in a single `std::list<int>`. This approach provides iterator stability, as inserting or erasing elements in one bucket's chain does not invalidate iterators pointing to elements in other chains.
--   **Hashing Function**: A simple and fast modulo hash function is used. The table sizes are chosen from a pre-defined list of prime numbers to help distribute keys more uniformly and reduce collisions.
+- **Separate Chaining**: Implemented using a single `std::list<int>` for storing all elements, with bucket indexing managed via `std::vector<std::list<int>::iterator>`.
+- **Hashing Strategy**: Utilises a modulo-based hash function. Bucket sizes are prime numbers to enhance distribution uniformity.
+- **Built With**:
+  - C++20 Standard
+  - Standard Template Library (STL) containers
+  - Google Test framework for unit testing
 
-## How to Build and Run Tests
-
-The project includes a comprehensive test suite using the Google Test framework to verify correctness and performance.
+## Compilation/Execution Instructions
 
 ### Prerequisites
 
--   A C++ compiler that supports the C++20 standard (e.g., GCC 10+, Clang 12+).
--   [Google Test](https://github.com/google/googletest) (gtest) installed and accessible by the compiler.
+- C++ compiler supporting C++20 (GCC 10+, Clang 12+)
+- [Google Test](https://github.com/google/googletest) framework
 
-### Compiling and Running
+### Compile and Run Tests
 
-1.  Navigate to the project's root directory in your terminal.
-2.  Compile the source files using the following command. You may need to adjust the include (`-I`) and library (`-L`) paths to match your Google Test installation.
+Compile the project by adjusting paths to your Google Test installation:
 
-    ```bash
-    g++ -std=c++20 main.cpp hash.cpp -o run_tests -I/path/to/googletest/include -L/path/to/googletest/lib -lgtest -lgtest_main -pthread
-    ```
+```bash
+g++ -std=c++20 main.cpp hash.cpp -o run_tests -I/path/to/googletest/include -L/path/to/googletest/lib -lgtest -lgtest_main -pthread
+```
 
-3.  Execute the compiled test runner:
+Execute tests:
 
-    ```bash
-    ./run_tests
-    ```
+```bash
+./run_tests
+```
 
-    All tests should pass, confirming that the implementation is working correctly.
+All tests should pass, validating the correctness of the implementation.
 
-## Example Usage
+## Example/Output Description
 
-Here is a simple example demonstrating how to use the `HashSet` class.
+Demonstrating basic usage of the `HashSet` class:
 
 ```cpp
 #include <iostream>
 #include "hash.hpp"
 
 int main() {
-    // 1. Create a new hash set
     HashSet mySet;
 
-    // 2. Insert some elements
     mySet.insert(42);
     mySet.insert(100);
     mySet.insert(-5);
-    mySet.insert(42); // Duplicates are automatically ignored
+    mySet.insert(42); // duplicate ignored
 
-    // 3. Check if an element exists
     if (mySet.contains(100)) {
         std::cout << "Set contains 100." << std::endl;
     }
 
-    // 4. Erase an element
     mySet.erase(100);
     std::cout << "Erased 100 from the set." << std::endl;
 
-
-    // 5. Print the number of elements
     std::cout << "Current size: " << mySet.size() << std::endl;
 
-    // 6. Iterate through the set using a range-based for loop
     std::cout << "Elements in set: ";
     for (int value : mySet) {
         std::cout << value << " ";
@@ -86,7 +76,7 @@ int main() {
 }
 ```
 
-#### Expected Output
+### Expected Output
 
 ```
 Set contains 100.
@@ -95,4 +85,14 @@ Current size: 2
 Elements in set: -5 42
 ```
 
-*(Note: The order of elements in the output may vary due to the nature of hash sets.)*
+*Note: Output element order may vary due to hashing.*
+
+## Assumptions/Limitations
+
+- Supports integer keys only.
+- Duplicates are ignored upon insertion.
+- Performance may vary with different load factors and key distributions.
+
+## Author Acknowledgement
+
+Developed by Mohammed Al-Khudhair as part of Computer Science coursework at the University of Technology Sydney (UTS).
