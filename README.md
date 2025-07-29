@@ -92,7 +92,3 @@ Elements in set: -5 42
 - Supports integer keys only.
 - Duplicates are ignored upon insertion.
 - Performance may vary with different load factors and key distributions.
-
-## Author Acknowledgement
-
-Developed by Mohammed Al-Khudhair as part of Computer Science coursework at the University of Technology Sydney (UTS).
